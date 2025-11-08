@@ -10,6 +10,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      _JAVA_OPTIONS: "-Xmx3g -XX:+UseParallelGC"  # Give Gradle more heap space to prevent OOM
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -36,7 +39,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build Debug APK
-        run: ./gradlew clean assembleDebug --no-daemon
+        run: ./gradlew clean assembleDebug --no-daemon --stacktrace --warning-mode all
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
