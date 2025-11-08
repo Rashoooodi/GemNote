@@ -1,0 +1,38 @@
+name: Build and Upload APK
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+        cache: gradle
+
+    - name: Add Gradle Wrapper if missing
+      run: |
+        if [ ! -f ./gradlew ]; then
+          gradle wrapper
+        fi
+        chmod +x gradlew
+
+    - name: Build Debug APK
+      run: ./gradlew clean assembleDebug --no-daemon
+
+    - name: Upload APK Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: GemNoteCloud-Debug
+        path: app/build/outputs/apk/debug/*.apk

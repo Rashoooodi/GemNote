@@ -1,0 +1,3 @@
+-keep class dagger.hilt.** { *; }
+-keep class com.rashoooodi.gemnotecloud.** { *; }
+-keep class androidx.media3.** { *; }
