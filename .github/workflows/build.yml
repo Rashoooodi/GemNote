@@ -29,9 +29,9 @@ jobs:
     - name: Add Gradle Wrapper if missing
       run: |
         if [ ! -f ./gradlew ]; then
-          gradle wrapper
+          gradle wrapper --gradle-version 8.7
         fi
-        chmod +x gradlew
+     shell: bash
 
     - name: Build Debug APK
       run: ./gradlew clean assembleDebug --no-daemon
