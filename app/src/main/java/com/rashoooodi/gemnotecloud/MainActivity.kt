@@ -18,7 +18,9 @@ import com.rashoooodi.gemnotecloud.ui.record.RecordScreen
 import com.rashoooodi.gemnotecloud.ui.detail.DetailScreen
 import com.rashoooodi.gemnotecloud.ui.settings.SettingsScreen
 import com.rashoooodi.gemnotecloud.ui.theme.GemNoteTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
